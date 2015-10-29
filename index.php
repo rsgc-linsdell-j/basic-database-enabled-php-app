@@ -54,6 +54,38 @@
       echo "</tr>";
   }
   echo "</table>";
+  
+   // And now perform simple query – make sure it's working
+  $query = "SELECT * FROM patron;";
+  $result = mysqli_query($connection, $query);
+  
+  // Iterate over the result set
+  echo "<table>";
+  echo "<tr>";
+  echo "<th>";
+  echo "ID";
+  echo "</th>";
+  echo "<th>";
+  echo "First Name";
+  echo "</th>";
+  echo "<th>";
+  echo "Last Name";
+  echo "</th>";
+  echo "</tr>";
+  while ($row = mysqli_fetch_assoc($result)) {
+      echo "<tr>";
+      echo "<td>";
+      echo $row['id'];
+      echo "</td>";
+      echo "<td>";
+      echo $row['firstname'];
+      echo "</td>";
+      echo "<td>";
+      echo $row['lastname'];
+      echo "</td>";
+      echo "</tr>";
+  }
+  echo "</table>";
 
   ?>
   <h1>Add a title to the library database:</h1>
@@ -63,5 +95,15 @@
     <br>
     <input type="submit" value="Submit">
   </form> 
+  
+  <h1>Add a patron to the library database:</h1>
+  <form action="addPatronHandler.php" method="post">
+    Patron Name:<br>
+    <input type="text" name="firstName" value="First">
+    <input type="text" name="lastName" value="Last">
+    <br>
+    <input type="submit" value="Submit">
+  </form> 
+  
 </body>
 </html>
